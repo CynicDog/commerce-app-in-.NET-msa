@@ -1,3 +1,5 @@
+using ShoppingCartService.Event;
+
 namespace ShoppingCartService.Business.domain;
 
 public class ShoppingCart
@@ -10,11 +12,14 @@ public class ShoppingCart
 
     public ShoppingCart(int userId) => this.UserId = userId;
 
-    public void AddItems(IEnumerable<ShoppingCartItem> items)
+    public void AddItems(IEnumerable<ShoppingCartItem> items, IEventStore eventStore)
     {
         foreach (var item in items)
         {
-            this.items.Add(item); 
+            if (this.items.Add(item))
+            {
+                eventStore.Raise("shopping-cart-item-added", new { this.UserId, item }); 
+            } 
         }
     }
 
