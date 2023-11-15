@@ -26,7 +26,7 @@ namespace ShoppingCartService
                         // to wait before each retry is calculated (exponential backoff strategy)
                         attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)))
                     ); 
-        }// to wait before each retry is calculated (exponential backoff strategy)
+        } 
  
         public void Configure(IApplicationBuilder app)
         {
