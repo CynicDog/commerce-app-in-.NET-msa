@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCartService.Business.domain;
+using ShoppingCartService.Business.store;
 
 namespace ShoppingCartService.Business.controller;
 
