@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "t6bPA/KE0Ju0U4t4c2NUKzNAuGvBLRgDn4WmICUkQ6T22kXp3YNG6ivtJNqNylLi8Xt5fZOAgcS31LAGmuKAzA==",
+  "dgSpecHash": "vzu00miRPqc+9fa8q0Svth7NtsxdN4QkE/SrQ5a3m+Uv/A74W46DSVTdZHTpl05H7ytjZGxprnZ4bipPAun7ig==",
   "success": true,
   "projectFilePath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/ginsenglee/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.bcl.timeprovider/8.0.0/microsoft.bcl.timeprovider.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.http/8.0.0/microsoft.extensions.http.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.http.polly/8.0.0/microsoft.extensions.http.polly.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.logging/8.0.0/microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.options/8.0.0/microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/polly/8.2.0/polly.8.2.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/polly.core/8.2.0/polly.core.8.2.0.nupkg.sha512",
+    "/Users/ginsenglee/.nuget/packages/polly.extensions.http/3.0.0/polly.extensions.http.3.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
