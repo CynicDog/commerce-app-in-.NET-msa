@@ -29,6 +29,7 @@ namespace ShoppingCartService
             //          greet();
             //       `
 
+            // database initialization performance as server starts 
             var shoppingCartStore = app.ApplicationServices.GetService<IShoppingCartStore>();
             shoppingCartStore?.Init();
         }
