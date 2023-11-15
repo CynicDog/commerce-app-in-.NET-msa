@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ncs3jc17t0khCEMdnz8hYpfIVerEzAYHMw/U1bbTKZ3SkbZWcDWZtDBIl7zFDrCzYLxWUECSuqOzKqJ1eQkpbA==",
+  "dgSpecHash": "t6bPA/KE0Ju0U4t4c2NUKzNAuGvBLRgDn4WmICUkQ6T22kXp3YNG6ivtJNqNylLi8Xt5fZOAgcS31LAGmuKAzA==",
   "success": true,
-  "projectFilePath": "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/ShoppingCartService.csproj",
+  "projectFilePath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

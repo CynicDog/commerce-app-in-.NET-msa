@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/ShoppingCartService.csproj": {}
+    "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj": {}
   },
   "projects": {
-    "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/ShoppingCartService.csproj": {
+    "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/ShoppingCartService.csproj",
+        "projectUniqueName": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj",
         "projectName": "ShoppingCartService",
-        "projectPath": "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/ShoppingCartService.csproj",
+        "projectPath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj",
         "packagesPath": "/Users/ginsenglee/.nuget/packages/",
-        "outputPath": "/Users/ginsenglee/Documents/GitHub/NET/ShoppingCartService/obj/",
+        "outputPath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ginsenglee/.nuget/NuGet/NuGet.Config"

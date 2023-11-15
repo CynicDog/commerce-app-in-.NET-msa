@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ginsenglee/Documents/GitHub/NET/ProductCatalogService/ProductCatalogService.csproj": {}
+    "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ProductCatalogService/ProductCatalogService.csproj": {}
   },
   "projects": {
-    "/Users/ginsenglee/Documents/GitHub/NET/ProductCatalogService/ProductCatalogService.csproj": {
+    "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ProductCatalogService/ProductCatalogService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ginsenglee/Documents/GitHub/NET/ProductCatalogService/ProductCatalogService.csproj",
+        "projectUniqueName": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ProductCatalogService/ProductCatalogService.csproj",
         "projectName": "ProductCatalogService",
-        "projectPath": "/Users/ginsenglee/Documents/GitHub/NET/ProductCatalogService/ProductCatalogService.csproj",
+        "projectPath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ProductCatalogService/ProductCatalogService.csproj",
         "packagesPath": "/Users/ginsenglee/.nuget/packages/",
-        "outputPath": "/Users/ginsenglee/Documents/GitHub/NET/ProductCatalogService/obj/",
+        "outputPath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ProductCatalogService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ginsenglee/.nuget/NuGet/NuGet.Config"
