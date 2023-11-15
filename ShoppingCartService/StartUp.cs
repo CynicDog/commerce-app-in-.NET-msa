@@ -13,7 +13,7 @@ namespace ShoppingCartService
             //      1. Transient: A new instance is created every time the service is requested.
             //      2. Scoped: A single instance is created for each scope. A scope is usually equivalent to the lifetime of a single HTTP request.
             //      3. Singleton: A single instance is created for the entire lifetime of the application. 
-            services.AddTransient<IShoppingCartStore, ShoppingCartStore>(); 
+            services.AddSingleton<IShoppingCartStore, ShoppingCartStore>(); 
         }
  
         public void Configure(IApplicationBuilder app)
