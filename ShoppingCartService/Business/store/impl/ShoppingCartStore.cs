@@ -15,18 +15,18 @@ public class ShoppingCartStore : IShoppingCartStore
         Database[shoppingCart.UserId] = shoppingCart; 
     }
 
-    public void Init()
-    {
-        ShoppingCart shoppingCart = new ShoppingCart(0001);
-        
-        var item = new ShoppingCart.ShoppingCartItem(
-            ProductCatalogId: 1000, 
-            ProductName: "Sample Item", 
-            Description: "Description for Sample Item",
-            Price: new ShoppingCart.Money("USD", 100));
-        
-        shoppingCart.AddItems(new List<ShoppingCart.ShoppingCartItem> { item });
-
-        Save(shoppingCart); 
-    } 
+    // public void Init()
+    // {
+    //     ShoppingCart shoppingCart = new ShoppingCart(0001);
+    //     
+    //     var item = new ShoppingCart.ShoppingCartItem(
+    //         ProductCatalogId: 1000, 
+    //         ProductName: "Sample Item", 
+    //         Description: "Description for Sample Item",
+    //         Price: new ShoppingCart.Money("USD", 100));
+    //     
+    //     shoppingCart.AddItems(new List<ShoppingCart.ShoppingCartItem> { item });
+    //
+    //     Save(shoppingCart); 
+    // } 
 }
