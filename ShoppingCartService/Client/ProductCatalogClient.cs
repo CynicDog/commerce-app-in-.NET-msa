@@ -12,19 +12,21 @@ public interface IProductCatalogClient
 public class ProductCatalogClient : IProductCatalogClient
 {
     private readonly HttpClient client;
+    private readonly ILogger logger;
     
     // verbatim string literal, where escape characters are not interpreted, and the string is treated exactly as it appears.
     private static readonly string ProductCatalogBaseUrl = @"http://localhost:5000";
     
     // The syntax for a placeholder is {index}, where index is the zero-based index of the argument to be inserted into the format string.
     private static readonly string GetProductPathTemplate = "?productIds=[{0}]";
-
-    public ProductCatalogClient(HttpClient client)
+    
+    public ProductCatalogClient(HttpClient client, ILogger<ProductCatalogClient> logger)
     {
         client.BaseAddress = new Uri(ProductCatalogBaseUrl); 
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-        this.client = client; 
+        this.client = client;
+        this.logger = logger;
     }
     
     public async Task<IEnumerable<ShoppingCart.ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogIds)
@@ -35,6 +37,8 @@ public class ProductCatalogClient : IProductCatalogClient
 
     private async Task<HttpResponseMessage> RequestProduct(int[] productCatalogIds)
     {
+        this.logger.LogInformation("Passed are Product IDs of {@}", productCatalogIds);
+        
         var productResource = string.Format(GetProductPathTemplate, string.Join(",", productCatalogIds));
         return await this.client.GetAsync(productResource); 
     }
