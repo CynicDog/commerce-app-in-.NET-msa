@@ -7,3 +7,6 @@ Accept: application/json
 Content-Type: application/json
 
 [1, 2]
+
+#### EventController.Get
+GET http://localhost:5214/event
