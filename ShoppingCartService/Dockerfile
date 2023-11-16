@@ -29,7 +29,7 @@ RUN dotnet publish "ShoppingCartService.csproj" -c Release -o /app/publish
 
 ## [ final stage ]
 # Create a new build stage named 'final' based on the 'base' stage
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
 
 # Set the working directory inside the container to /app
 WORKDIR /app
