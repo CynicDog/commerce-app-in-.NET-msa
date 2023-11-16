@@ -22,6 +22,7 @@ public class ShoppingCartController : ControllerBase
         this.logger = logger;
     }
 
+    // http http://localhost:5000/shopping-cart/100
     [HttpGet("{userId:int}")]
     public ShoppingCart Get(int userId)
     {
@@ -30,6 +31,7 @@ public class ShoppingCartController : ControllerBase
         return this.shoppingCartStore.Get(userId); 
     } 
 
+    // http POST http://localhost:5000/shopping-cart/100/items Accept:application/json Content-Type:application/json <<< '[1, 2]'
     [HttpPost("{userId:int}/items")]
     public async Task<ShoppingCart> Post(int userId, [FromBody] int[] productIds)
     {
