@@ -1,14 +1,17 @@
-// creating a resource group in AKS, creating a container registry 
-az group create --name MicroservicesInDotnet --location northeurope
+// create resource group  
+az group create --name DotNETCommerceInMSA --location northeurope
    
-az acr create --resource-group MicroservicesInDotnet --name
-  CynicDogsPlayGround --sku Basic
-  
-az aks create --resource-group MicroservicesInDotnet --name
-  MicroservicesInDotnetAKSCluster --node-count 1 --enable-addons monitoring
-  --generate-ssh-keys --attach-acr CynicDogsPlayGround
+// create Azure Container Registry 
+az acr create --resource-group DotNETCommerceInMSA --name cynicdog --sku Basic
+
+// create Azure Kubernetes Service 
+az aks create --resource-group DotNETCommerceInMSA --name DotNETCommerceInMSAAKSCluster --node-count 1 --enable-addons monitoring --generate-ssh-keys --attach-acr cynicdog
  
-az aks get-credentials --resource-group MicroservicesInDotnet --name
-  MicroservicesInDotnetAKSCluster
-  
+// fetch credentials for connecting to the Azure Kubernetes Service  
+az aks get-credentials --resource-group DotNETCommerceInMSA --name DotNETCommerceInMSAAKSCluster
+
+// retrieve information about the nodes in the Kubernetes cluster
 kubectl get nodes
+
+// Error occured when resource group set to `koreasouth` 
+// : The VM size of Standard_DS2_v2 is not allowed in your subscription in location 'koreasouth'.
