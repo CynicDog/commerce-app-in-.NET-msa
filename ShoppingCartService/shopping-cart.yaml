@@ -2,32 +2,36 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: shopping-cart
-spec: 
+spec:
   replicas: 1
-  selector: 
+  selector:
     matchLabels:
       app: shopping-cart
   template:
     metadata:
       labels:
-        app: shopping-cart 
+        app: shopping-cart
     spec:
-      containers: 
+      containers:
         - name: shopping-cart
+          # hosting in an on-premise local Kubernetes environment 
+          # (deploying on AKS failed because of the ARM64 CPU architecture of MacBook M1, 
+          #  which is not accepted in AKS. Tried setting the platform to `linux/amd64` 
+          #  while building image in docker command line/Dockerfile, but couldn't progress from restore phase)
           image: shopping-cart
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 80 
---- 
+            - containerPort: 80
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: shopping-cart
-spec: 
-  type: LoadBalancer 
-  ports: 
+spec:
+  type: LoadBalancer
+  ports:
     - name: shopping-cart
       port: 5000
       targetPort: 80
   selector:
-    app: shopping-cart 
+    app: shopping-cart
