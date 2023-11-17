@@ -15,7 +15,7 @@ public class ProductCatalogClient : IProductCatalogClient
     private readonly ILogger logger;
     
     // verbatim string literal, where escape characters are not interpreted, and the string is treated exactly as it appears.
-    private static readonly string ProductCatalogBaseUrl = @"http://localhost:5000";
+    private static readonly string ProductCatalogBaseUrl = @"http://localhost:5100";
     
     // The syntax for a placeholder is {index}, where index is the zero-based index of the argument to be inserted into the format string.
     private static readonly string GetProductPathTemplate = "?productIds=[{0}]";
