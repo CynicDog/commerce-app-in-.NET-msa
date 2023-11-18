@@ -14,8 +14,12 @@ public class ProductCatalogClient : IProductCatalogClient
     private readonly HttpClient client;
     private readonly ILogger logger;
     
-    // verbatim string literal, where escape characters are not interpreted, and the string is treated exactly as it appears.
-    private static readonly string ProductCatalogBaseUrl = @"http://localhost:5100";
+    // Note 1) On `@`
+    //      : verbatim string literal, where escape characters are not interpreted, and the string is treated exactly as it appears.
+    // Note 2) On `host.docker.internal` 
+    //      : Window/MacOS host-specific solutions to resolves to the internal IP address of the host machine. This enables containers to interact
+    //      with services or applications running on the host machine as if they were running locally within the container.
+    private static readonly string ProductCatalogBaseUrl = @"http://host.docker.internal:5100";
     
     // The syntax for a placeholder is {index}, where index is the zero-based index of the argument to be inserted into the format string.
     private static readonly string GetProductPathTemplate = "?productIds=[{0}]";
