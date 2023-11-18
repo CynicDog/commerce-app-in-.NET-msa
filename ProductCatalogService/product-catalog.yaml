@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: product-catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-catalog
+  template:
+    metadata:
+      labels:
+        app: product-catalog
+    spec:
+      containers:
+        - name: product-catalog
+          image: product-catalog
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: product-catalog
+spec:
+  type: LoadBalancer
+  ports:
+    - name: product-catalog
+      port: 5100
+      targetPort: 80
+  selector:
+    app: product-catalog
