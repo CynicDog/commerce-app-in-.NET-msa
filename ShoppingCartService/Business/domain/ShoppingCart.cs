@@ -6,11 +6,17 @@ public class ShoppingCart
 {
     private readonly HashSet<ShoppingCartItem> items = new();
     
-    // getters in Java's POJO 
+    public int? Id { get; }
     public int UserId { get; } 
     public IEnumerable<ShoppingCartItem> Items => this.items;
 
     public ShoppingCart(int userId) => this.UserId = userId;
+    public ShoppingCart(int? id, int userId, IEnumerable<ShoppingCartItem> items)
+    {
+        this.Id = id;
+        this.UserId = userId;
+        this.items = new HashSet<ShoppingCartItem>();
+    }
 
     public void AddItems(IEnumerable<ShoppingCartItem> items, IEventStore eventStore)
     {
@@ -23,7 +29,7 @@ public class ShoppingCart
         }
     }
 
-    public void RemoveItems(int[] productCatalogIds) =>
+    public void RemoveItems(int[] productCatalogIds, IEventStore eventStore) =>
         this.items.RemoveWhere(i => productCatalogIds.Contains(i.ProductCatalogId));
 
     public record ShoppingCartItem(int ProductCatalogId, string ProductName, string Description, Money Price)

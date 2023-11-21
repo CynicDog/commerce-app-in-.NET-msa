@@ -12,11 +12,10 @@ CREATE TABLE [dbo].[ShoppingCart](
     [UserId] [bigint] NOT NULL,
     CONSTRAINT ShoppingCartUnique UNIQUE([ID], [UserID])
     )
-    GO
+GO
 
-CREATE INDEX ShoppingCart_UserId
-    ON [dbo].[ShoppingCart] (UserId)
-    GO
+CREATE INDEX ShoppingCart_UserId ON [dbo].[ShoppingCart] (UserId)
+GO
 
 CREATE TABLE [dbo].[ShoppingCartItem](
     [ID] int IDENTITY(1,1) PRIMARY KEY,
@@ -27,16 +26,25 @@ CREATE TABLE [dbo].[ShoppingCartItem](
     [Amount] [int] NOT NULL,
     [Currency] [nvarchar](5) NOT NULL
     )
+GO
 
-    GO
-
-ALTER TABLE [dbo].[ShoppingCartItem]  WITH CHECK ADD CONSTRAINT [FK_ShoppingCart] FOREIGN KEY([ShoppingCartId])
-    REFERENCES [dbo].[ShoppingCart] ([Id])
-    GO
+ALTER TABLE [dbo].[ShoppingCartItem]  WITH CHECK ADD CONSTRAINT [FK_ShoppingCart] FOREIGN KEY([ShoppingCartId]) REFERENCES [dbo].[ShoppingCart] ([Id])
+GO
 
 ALTER TABLE [dbo].[ShoppingCartItem] CHECK CONSTRAINT [FK_ShoppingCart]
-    GO
+GO
 
-CREATE INDEX ShoppingCartItem_ShoppingCartId
-    ON [dbo].[ShoppingCartItem] (ShoppingCartId)
-    GO
+CREATE INDEX ShoppingCartItem_ShoppingCartId ON [dbo].[ShoppingCartItem] (ShoppingCartId)
+GO
+
+INSERT INTO [dbo].[ShoppingCart] ([UserId]) VALUES
+    (1), 
+    (2),
+    (3);
+
+INSERT INTO [dbo].[ShoppingCartItem] ([ShoppingCartId], [ProductCatalogId], [ProductName], [ProductDescription], [Amount], [Currency]) VALUES
+    (1, 101, 'Product1', 'Description1', 10.0, 'USD'),
+    (1, 102, 'Product2', 'Description2', 15.0, 'EUR'),
+    (2, 201, 'Product3', 'Description3', 20.0, 'USD'),
+    (2, 202, 'Product4', 'Description4', 25.0, 'EUR'),
+    (3, 301, 'Product5', 'Description5', 5.0, 'KOR');
