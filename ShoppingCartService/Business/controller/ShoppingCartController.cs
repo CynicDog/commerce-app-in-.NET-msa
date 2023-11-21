@@ -24,11 +24,11 @@ public class ShoppingCartController : ControllerBase
 
     // http http://localhost:5000/shopping-cart/100
     [HttpGet("{userId:int}")]
-    public ShoppingCart Get(int userId)
+    public async Task<ShoppingCart> Get(int userId)
     {
         this.logger.LogInformation("Passed is user ID of {@}", userId);
         
-        return this.shoppingCartStore.Get(userId); 
+        return await this.shoppingCartStore.Get(userId); 
     } 
 
     // http POST http://localhost:5000/shopping-cart/100/items Accept:application/json Content-Type:application/json <<< '[1, 2]'
@@ -37,11 +37,26 @@ public class ShoppingCartController : ControllerBase
     {
         this.logger.LogInformation("Passed are Product IDs of {@}", productIds);
         
-        var shoppingCart = shoppingCartStore.Get(userId);
+        var shoppingCart = await shoppingCartStore.Get(userId);
         var shoppingCartItems = await this.productCatalogClient.GetShoppingCartItems(productIds);
         
         shoppingCart.AddItems(shoppingCartItems, eventStore);
         shoppingCartStore.Save(shoppingCart);
+
+        return shoppingCart;
+    }
+
+    // http DELETE http://localhost:5000/shopping-cart/100/items Accept:application/json Content-Type:application/json <<< '[1]'
+    [HttpDelete("{userId:int}/items")]
+    public async Task<ShoppingCart> Delete(int userId, [FromBody] int[] productIds)
+    {
+        this.logger.LogInformation("Passed are Product IDs of {@}", productIds);
+        
+        var shoppingCart = await this.shoppingCartStore.Get(userId); 
+        
+        shoppingCart.RemoveItems(productIds, this.eventStore);
+
+        await this.shoppingCartStore.Save(shoppingCart);
 
         return shoppingCart;
     }
