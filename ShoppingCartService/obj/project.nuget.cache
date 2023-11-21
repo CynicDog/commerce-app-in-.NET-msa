@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vzu00miRPqc+9fa8q0Svth7NtsxdN4QkE/SrQ5a3m+Uv/A74W46DSVTdZHTpl05H7ytjZGxprnZ4bipPAun7ig==",
+  "dgSpecHash": "mAG+B3UACdxsjZOECBASLGai2sn8BnMAaWIoJ0aP9M8haTF/mp12CaDlg0y7DRTpffXNwYXQi+g2L3Xf89gIcQ==",
   "success": true,
   "projectFilePath": "/Users/ginsenglee/Documents/GitHub/NET/commerce-app-in-.NET-msa/ShoppingCartService/ShoppingCartService.csproj",
   "expectedPackageFiles": [
+    "/Users/ginsenglee/.nuget/packages/dapper/2.1.21/dapper.2.1.21.nupkg.sha512",
     "/Users/ginsenglee/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/Users/ginsenglee/.nuget/packages/microsoft.bcl.timeprovider/8.0.0/microsoft.bcl.timeprovider.8.0.0.nupkg.sha512",
     "/Users/ginsenglee/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
