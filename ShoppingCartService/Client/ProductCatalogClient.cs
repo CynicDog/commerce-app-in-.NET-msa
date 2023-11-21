@@ -53,7 +53,9 @@ public class ProductCatalogClient : IProductCatalogClient
 
         var products = 
             await JsonSerializer.DeserializeAsync<List<ProductCatalogModel>>(
-                await response.Content.ReadAsStreamAsync(), 
+                // Json data to be deserialized
+                await response.Content.ReadAsStreamAsync(),
+                // set configuration on deserialization 
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? 
             new();
 
