@@ -7,7 +7,7 @@ namespace ShoppingCartService.Business.store.impl;
 public class ShoppingCartStore : IShoppingCartStore
 {
     private string connectionTemplate =
-        @"Data Source=localhost;Initial Catalog=ShoppingCart;User Id=sa;Password=bn8920ny12!";
+        @"Data Source=localhost;Initial Catalog=ShoppingCart;User Id=sa;Password=yourStrongPassword!";
     
     public async Task<ShoppingCart> Get(int userId)
     {
