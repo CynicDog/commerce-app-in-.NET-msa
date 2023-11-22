@@ -51,8 +51,8 @@ INSERT INTO [dbo].[ShoppingCartItem] ([ShoppingCartId], [ProductCatalogId], [Pro
 
 CREATE TABLE [dbo].[EventStore](
     [SequenceNumber] int IDENTITY(1,1) PRIMARY KEY,
-    [Name] [nvarchar](100)  NOT NULL,
     [OccurredAt] [datetimeoffset] NOT NULL,
+    [Name] [nvarchar](100)  NOT NULL,
     [Content][nvarchar](max) NOT NULL
 )
 GO

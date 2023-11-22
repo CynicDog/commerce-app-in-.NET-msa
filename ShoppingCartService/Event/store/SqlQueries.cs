@@ -6,5 +6,5 @@ public static class SqlQueries
         @"insert into EventStore(Name, OccuredAt, Content) values (@Name, @OccuredAt, @Content)";
 
     public const string ReadEventSql =
-        @"select * from EventStore where ID >= @Start and ID <= @End";
+        @"select * from EventStore where SequenceNumber >= @Start and SequenceNumber <= @End";
 }
