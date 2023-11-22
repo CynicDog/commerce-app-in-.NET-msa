@@ -12,7 +12,7 @@ public class EventController
         this.eventStore = eventStore;
     }
 
-    // http http://localhost:5000/event
+    // http 'http://localhost:5000/event?start=0&end=10'
     [HttpGet("")]
     public async Task<EventModel[]> Get([FromQuery] long start, [FromQuery] long end = long.MaxValue)
         => (await this.eventStore.GetEvents(start, end)).ToArray(); 
