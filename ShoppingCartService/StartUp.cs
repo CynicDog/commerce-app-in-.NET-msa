@@ -17,7 +17,7 @@ namespace ShoppingCartService
             //      2. Scoped: A single instance is created for each scope. A scope is usually equivalent to the lifetime of a single HTTP request.
             //      3. Singleton: A single instance is created for the entire lifetime of the application. 
             services.AddTransient<IShoppingCartStore, ShoppingCartStore>();
-            services.AddTransient<IEventStore, EventStore>();
+            services.AddTransient<IEventStore, Event.impl.EventStore>();
             
             services.AddHttpClient<IProductCatalogClient, ProductCatalogClient>()
                 .AddTransientHttpErrorPolicy(p =>

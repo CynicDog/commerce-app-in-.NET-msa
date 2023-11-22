@@ -1,40 +1,67 @@
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
+using System.Text;
 using System.Text.Json;
 using Dapper;
+using EventStore.ClientAPI;
 
 namespace ShoppingCartService.Event.impl;
 
 public class EventStore : IEventStore
 {
     private string connectionTemplate = 
-        @"Data Source=localhost;Initial Catalog=ShoppingCart;User Id=sa;Password=yourStrongPassword!";
+        "tcp://admin:changeit@localhost:1113";
     
     public async Task<IEnumerable<EventModel>> GetEvents(long firstEventSeq, long lastEventSeq)
     {
-        await using var connection = new SqlConnection(this.connectionTemplate);
+        using var connection =
+            EventStoreConnection.Create(
+                ConnectionSettings.Create().DisableTls().Build(),
+                new Uri(connectionTemplate)
+            );
+        await connection.ConnectAsync();
 
-        return await connection.QueryAsync<EventModel>(
-            SqlQueries.ReadEventSql,
+        var found = await connection.ReadStreamEventsForwardAsync(
+            "ShoppingCart",
+            start: firstEventSeq,
+            count: (int)(lastEventSeq - firstEventSeq),
+            resolveLinkTos: false);
+
+        return found.Events.Select(e =>
             new
             {
-                Start = firstEventSeq,
-                End = lastEventSeq
-            }
-        );
+                Content = Encoding.UTF8.GetString(e.Event.Data),
+                Metadata = JsonSerializer.Deserialize<EventModelMetadata>(Encoding.UTF8.GetString(e.Event.Metadata),
+                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!
+            }).Select((e, i) => 
+            new EventModel(
+                i + firstEventSeq,
+                e.Metadata.OccurredAt,
+                e.Metadata.EventName,
+                e.Content));
     }
 
     public async Task Raise(string eventName, object content)
     {
-        await using var connection = new SqlConnection(this.connectionTemplate);
+        using var connection =
+            EventStoreConnection.Create(
+                ConnectionSettings.Create().DisableTls().Build(),
+                new Uri(connectionTemplate)
+            );
+        await connection.ConnectAsync();
 
-        await connection.ExecuteAsync(
-            SqlQueries.WriteEventSql,
-            new
-            {
-                Name = eventName,
-                OccuredAt = DateTimeOffset.Now,
-                Content = JsonSerializer.Serialize(content)
-            }
+        var response = await connection.AppendToStreamAsync(
+            "ShoppingCart",
+            ExpectedVersion.Any,
+            new EventData(
+                Guid.NewGuid(),
+                "ShoppingCartEvent",
+                isJson: true,
+                data: Encoding.UTF8.GetBytes(JsonSerializer.Serialize(content)),
+                metadata: Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new EventModelMetadata(
+                    DateTimeOffset.UtcNow,
+                    eventName
+                ))))
         );
     }
 }
