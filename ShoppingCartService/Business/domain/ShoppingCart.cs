@@ -11,11 +11,12 @@ public class ShoppingCart
     public IEnumerable<ShoppingCartItem> Items => this.items;
 
     public ShoppingCart(int userId) => this.UserId = userId;
+    
     public ShoppingCart(int? id, int userId, IEnumerable<ShoppingCartItem> items)
     {
         this.Id = id;
         this.UserId = userId;
-        this.items = new HashSet<ShoppingCartItem>();
+        this.items = new HashSet<ShoppingCartItem>(items);
     }
 
     public void AddItems(IEnumerable<ShoppingCartItem> items, IEventStore eventStore)

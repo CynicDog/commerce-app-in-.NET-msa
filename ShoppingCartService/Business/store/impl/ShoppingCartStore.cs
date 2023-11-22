@@ -14,7 +14,6 @@ public class ShoppingCartStore : IShoppingCartStore
         await using var connection = new SqlConnection(this.connectionTemplate);
         await connection.OpenAsync();
         
-        // TODO: needed is mapping database column names over domain class properties   
         var founds = 
             (await connection.QueryAsync(SqlQueries.readItemsTemplateQuery, new { UserId = userId })).ToList();
 
