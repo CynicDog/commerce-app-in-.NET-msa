@@ -49,6 +49,7 @@ INSERT INTO [dbo].[ShoppingCartItem] ([ShoppingCartId], [ProductCatalogId], [Pro
     (2, 202, 'Product4', 'Description4', 25.0, 'EUR'),
     (3, 301, 'Product5', 'Description5', 5.0, 'KOR');
 
+-- unused table (replaced by EventStoreDB) 
 CREATE TABLE [dbo].[EventStore](
     [SequenceNumber] int IDENTITY(1,1) PRIMARY KEY,
     [OccurredAt] [datetimeoffset] NOT NULL,
