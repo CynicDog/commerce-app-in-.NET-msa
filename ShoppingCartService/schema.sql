@@ -48,3 +48,11 @@ INSERT INTO [dbo].[ShoppingCartItem] ([ShoppingCartId], [ProductCatalogId], [Pro
     (2, 201, 'Product3', 'Description3', 20.0, 'USD'),
     (2, 202, 'Product4', 'Description4', 25.0, 'EUR'),
     (3, 301, 'Product5', 'Description5', 5.0, 'KOR');
+
+CREATE TABLE [dbo].[EventStore](
+    [SequenceNumber] int IDENTITY(1,1) PRIMARY KEY,
+    [Name] [nvarchar](100)  NOT NULL,
+    [OccurredAt] [datetimeoffset] NOT NULL,
+    [Content][nvarchar](max) NOT NULL
+)
+GO

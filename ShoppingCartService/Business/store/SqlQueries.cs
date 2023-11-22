@@ -10,17 +10,17 @@ public static class SqlQueries
         ";
 
     public const string insertShoppingCartSql =
-        @"insert into ShoppingCart.dbo.ShoppingCart (UserId) output inserted.ID values (@UserId)";
+        @"insert into ShoppingCart (UserId) output inserted.ID values (@UserId)";
 
     public const string deleteForShoppingCartSql =
         @"
             delete item 
-            from ShoppingCart.dbo.ShoppingCartItem item 
+            from ShoppingCartItem item 
             inner join ShoppingCart cart on item.ShoppingCartId = cart.ID and cart.UserId = @UserId";
 
     public const string addAllForShoppingCartSql =
         @"
-            insert into ShoppingCart.dbo.ShoppingCartItem (ShoppingCartId, ProductCatalogId, ProductName, ProductDescription, Amount, Currency)
+            insert into ShoppingCartItem (ShoppingCartId, ProductCatalogId, ProductName, ProductDescription, Amount, Currency)
             values (@ShoppingCartId, @ProductCatalogId, @ProductName, @ProductDescription, @Amount, @Currency)
         ";
 }
