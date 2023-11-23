@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 using ShoppingCartService.Business.domain;
+using ShoppingCartService.Util;
 
 namespace ShoppingCartService;
 
@@ -12,6 +13,7 @@ public interface IProductCatalogClient
 public class ProductCatalogClient : IProductCatalogClient
 {
     private readonly HttpClient client;
+    private readonly ICache cache; 
     private readonly ILogger logger;
     
     // Note 1) On `@`
@@ -19,17 +21,22 @@ public class ProductCatalogClient : IProductCatalogClient
     // Note 2) On `host.docker.internal` 
     //      : Window/MacOS host-specific solutions to resolves to the internal IP address of the host machine. This enables containers to interact
     //      with services or applications running on the host machine as if they were running locally within the container.
-    private static readonly string ProductCatalogBaseUrl = @"http://host.docker.internal:5100";
+    // TODO: 
+    //      Step 0. Run services in local environment using dotnet command line, with the SQL server run on container, along with the database connection through IDE (Done)    
+    //      Step 1. Compose services in containers with successful connection to database and execution of creating schema operation (Not Done Yet)
+    //      Step 2. Deploy services in Kubernetes with successful connection to database and execution of creating schema operation (Not Done Yet)
+    private static readonly string ProductCatalogBaseUrl = @"http://localhost:5100";
     
     // The syntax for a placeholder is {index}, where index is the zero-based index of the argument to be inserted into the format string.
     private static readonly string GetProductPathTemplate = "?productIds=[{0}]";
     
-    public ProductCatalogClient(HttpClient client, ILogger<ProductCatalogClient> logger)
+    public ProductCatalogClient(HttpClient client, ICache cache, ILogger<ProductCatalogClient> logger)
     {
         client.BaseAddress = new Uri(ProductCatalogBaseUrl); 
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         this.client = client;
+        this.cache = cache; 
         this.logger = logger;
     }
     
@@ -44,7 +51,15 @@ public class ProductCatalogClient : IProductCatalogClient
         this.logger.LogInformation("Passed are Product IDs of {@}", productCatalogIds);
         
         var productResource = string.Format(GetProductPathTemplate, string.Join(",", productCatalogIds));
-        return await this.client.GetAsync(productResource); 
+        var response = this.cache.Get(productResource) as HttpResponseMessage;
+
+        if (response is null)
+        {
+            response = await this.client.GetAsync(productResource);
+            cache.AddToCache(productResource, response); 
+        }
+
+        return response; 
     }
 
     private static async Task<IEnumerable<ShoppingCart.ShoppingCartItem>> ToShoppingCartItems(HttpResponseMessage response)
