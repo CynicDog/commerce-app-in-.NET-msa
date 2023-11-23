@@ -41,7 +41,7 @@ public class ShoppingCartController : ControllerBase
         var shoppingCartItems = await this.productCatalogClient.GetShoppingCartItems(productIds);
         
         shoppingCart.AddItems(shoppingCartItems, eventStore);
-        shoppingCartStore.Save(shoppingCart);
+        await shoppingCartStore.Save(shoppingCart);
 
         return shoppingCart;
     }
