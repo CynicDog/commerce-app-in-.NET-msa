@@ -3,6 +3,7 @@ using ShoppingCartService.Business.store;
 using ShoppingCartService.Business.store.impl;
 using ShoppingCartService.Event;
 using ShoppingCartService.Event.impl;
+using ShoppingCartService.Util;
 
 namespace ShoppingCartService 
 {
@@ -18,6 +19,7 @@ namespace ShoppingCartService
             //      3. Singleton: A single instance is created for the entire lifetime of the application. 
             services.AddTransient<IShoppingCartStore, ShoppingCartStore>();
             services.AddTransient<IEventStore, Event.impl.EventStore>();
+            services.AddTransient<ICache, Cache>(); 
             
             services.AddHttpClient<IProductCatalogClient, ProductCatalogClient>()
                 .AddTransientHttpErrorPolicy(p =>
@@ -45,7 +47,6 @@ namespace ShoppingCartService
             // // database initialization performance as server starts 
             // var shoppingCartStore = app.ApplicationServices.GetService<IShoppingCartStore>();
             // shoppingCartStore?.Init();
-            
         }
     }
 }
