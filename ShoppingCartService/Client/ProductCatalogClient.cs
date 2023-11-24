@@ -21,11 +21,7 @@ public class ProductCatalogClient : IProductCatalogClient
     // Note 2) On `host.docker.internal` 
     //      : Window/MacOS host-specific solutions to resolves to the internal IP address of the host machine. This enables containers to interact
     //      with services or applications running on the host machine as if they were running locally within the container.
-    // TODO: 
-    //      Step 0. Run services in local environment using dotnet command line, with the SQL server run on container, along with the database connection through IDE (Done)    
-    //      Step 1. Compose services in containers with successful connection to database and execution of creating schema operation (Not Done Yet)
-    //      Step 2. Deploy services in Kubernetes with successful connection to database and execution of creating schema operation (Not Done Yet)
-    private static readonly string ProductCatalogBaseUrl = @"http://localhost:5100";
+    private static readonly string ProductCatalogBaseUrl = @"http://host.docker.internal:5100";
     
     // The syntax for a placeholder is {index}, where index is the zero-based index of the argument to be inserted into the format string.
     private static readonly string GetProductPathTemplate = "?productIds=[{0}]";
