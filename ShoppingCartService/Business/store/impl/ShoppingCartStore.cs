@@ -6,10 +6,10 @@ namespace ShoppingCartService.Business.store.impl;
 
 public class ShoppingCartStore : IShoppingCartStore
 {
-    private readonly ILogger Logger; 
+    private readonly ILogger Logger;
     private string connectionTemplate =
-        @"Data Source=localhost;Initial Catalog=ShoppingCart;User Id=sa;Password=yourStrongPassword!";
-
+        @"Data Source=azuresqledge-service; Initial Catalog=ShoppingCart; User Id=sa; Password=yourStrongPassword!";
+    
     public ShoppingCartStore(ILogger<ShoppingCartStore> logger)
     {
         this.Logger = logger;

@@ -1,0 +1,43 @@
+# Azure SQL Edge Deployment 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azuresqledge-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: azuresqledge
+  template:
+    metadata:
+      labels:
+        app: azuresqledge
+    spec:
+      containers:
+        - name: azuresqledge
+          image: mcr.microsoft.com/azure-sql-edge
+          ports:
+            - containerPort: 1433
+          env:
+            - name: ACCEPT_EULA
+              value: "1"
+            - name: MSSQL_SA_PASSWORD
+              value: "yourStrongPassword!"
+          securityContext:
+            capabilities:
+              add:
+                - SYS_PTRACE
+# Azure SQL Edge Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: azuresqledge-service
+spec:
+  selector:
+    app: azuresqledge
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: NodePort
