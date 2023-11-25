@@ -12,6 +12,10 @@ public class EventController
         this.eventStore = eventStore;
     }
 
+    // TODO:
+    //      1. Deploy EventStoreDB on Kubernetes
+    //      2. Compose the operation of multiple manifests into a singly managed bash file
+    
     // http 'http://localhost:5000/event?start=0&end=10'
     [HttpGet("")]
     public async Task<EventModel[]> Get([FromQuery] long start, [FromQuery] long end = long.MaxValue)
