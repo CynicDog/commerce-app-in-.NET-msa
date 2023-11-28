@@ -50,9 +50,11 @@ public class ProductCatalogClient : IProductCatalogClient
 
     private async Task<HttpResponseMessage> RequestProduct(int[] productCatalogIds)
     {
-        this.logger.LogInformation("Passed are Product IDs of {@}", productCatalogIds);
+        this.logger.LogInformation("Passed are Product IDs of {@productCatalogIds}", productCatalogIds);
         
         var productResource = string.Format(GetProductPathTemplate, string.Join(",", productCatalogIds));
+        this.logger.LogInformation("Request sent with the resource of {@productResource}", productResource);
+        
         var response = this.cache.Get(productResource) as HttpResponseMessage;
 
         if (response is null)
