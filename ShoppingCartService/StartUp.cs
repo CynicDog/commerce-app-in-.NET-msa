@@ -1,8 +1,10 @@
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using ShoppingCartService.Business.store;
 using ShoppingCartService.Business.store.impl;
 using ShoppingCartService.Event;
-using ShoppingCartService.Event.impl;
 using ShoppingCartService.Util;
 
 namespace ShoppingCartService 
