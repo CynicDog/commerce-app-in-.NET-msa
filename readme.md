@@ -37,7 +37,7 @@
 1. run `chmod +x deploy.sh` to grant execution permission
 2. run `./deploy.sh` to build images / deploy containers on Kubernetes
 
-> note: Deploying a Kubernetes cluster on a AKS, particularly when encountering difficulties in applying images on an M1 chip. Thereby, the goal has been set to overcome these obstacles and ensure seamless image deployment within the Kubernetes cluster deployed on local machine.
+> note: Encountered difficulties in applying images on an M1 chip. Thereby, deployed seamless image deployment within the Kubernetes cluster on local machine.
 
 --- 
 ## Endpoint examples (httpie command)
