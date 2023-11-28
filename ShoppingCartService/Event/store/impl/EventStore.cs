@@ -10,7 +10,7 @@ namespace ShoppingCartService.Event.impl;
 public class EventStore : IEventStore
 {
     private string connectionTemplate = 
-        "tcp://admin:changeit@localhost:1113";
+        "tcp://admin:changeit@eventstore-service:1113";
     
     public async Task<IEnumerable<EventModel>> GetEvents(long firstEventSeq, long lastEventSeq)
     {

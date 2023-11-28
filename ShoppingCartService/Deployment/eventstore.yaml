@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eventstore-deployment
+spec:
+  selector:
+    matchLabels:
+      app: eventstore
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: eventstore
+    spec:
+      # If deployed is a service with a name starting with `eventstore` then Kubernetes’ service environment variables will interfere with Event Store’s configuration 
+      enableServiceLinks: false
+      containers:
+        - name: eventstore
+          image: ghcr.io/eventstore/eventstore:21.10.2-alpha-arm64v8
+          args:
+            - "--run-projections=All"
+            - "--enable-external-tcp=true"
+            - "--enable-atom-pub-over-http=true"
+            - "--insecure"
+          ports:
+            - containerPort: 1113
+              protocol: TCP
+            - containerPort: 2113
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eventstore-service 
+spec:
+  selector:
+    app: eventstore
+  ports:
+    - protocol: TCP
+      port: 1113
+      targetPort: 1113

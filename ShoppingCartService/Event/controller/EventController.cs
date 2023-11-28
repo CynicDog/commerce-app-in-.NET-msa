@@ -13,7 +13,7 @@ public class EventController
     }
 
     // TODO:
-    //      1. Deploy EventStoreDB on Kubernetes
+    //      1. Deploy EventStoreDB on Kubernetes (Done)
     //      2. Compose the operation of multiple manifests into a singly managed bash file
     
     // http 'http://localhost:5000/event?start=0&end=10'
