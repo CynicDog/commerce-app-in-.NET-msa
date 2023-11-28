@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics.Eventing.Reader;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 using Dapper;
 using EventStore.ClientAPI;
 

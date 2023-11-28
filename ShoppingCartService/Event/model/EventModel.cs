@@ -1,3 +1,5 @@
+using System;
+
 namespace ShoppingCartService.Event
 {
     public record EventModel(long SequenceNumber, DateTimeOffset OccurredAt, string Name, object Content)

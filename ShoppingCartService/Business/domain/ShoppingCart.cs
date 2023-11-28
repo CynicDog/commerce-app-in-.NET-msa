@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using ShoppingCartService.Event;
 
 namespace ShoppingCartService.Business.domain;
