@@ -6,7 +6,7 @@ namespace ShoppingCartService.Business.store.impl;
 
 public class ShoppingCartStore : IShoppingCartStore
 {
-    private readonly ILogger Logger;
+    private readonly ILogger<ShoppingCartStore> Logger;
     private string connectionTemplate =
         @"Data Source=azuresqledge-service; Initial Catalog=ShoppingCart; User Id=sa; Password=yourStrongPassword!";
     
@@ -25,7 +25,7 @@ public class ShoppingCartStore : IShoppingCartStore
 
         // When the rows returned by a SQL query have column names equal to the property names in a class,
         // Dapper can automatically map to instances of the class.
-        Logger.LogInformation("Fetching row(s) with the user identifier of [{@}]", userId);
+        Logger.LogInformation("Fetching row(s) with the user identifier of [{@userId}]", userId);
         return new ShoppingCart(
             founds.FirstOrDefault()?.ID, 
             userId, 
@@ -50,16 +50,16 @@ public class ShoppingCartStore : IShoppingCartStore
                                      SqlQueries.insertShoppingCartSql, 
                                      new { shoppingCart.UserId }, transaction
                                  );
-            Logger.LogInformation("Inserted an instance of `ShoppingCart` with the identifier of [{@}]", shoppingCart.Id);
+            Logger.LogInformation("Inserted an instance of `ShoppingCart` with the identifier of [{@ShoppingCartId}]", shoppingCart.Id);
 
             // delete all previous shopping cart items
-            Logger.LogInformation("Deleting an instance of `ShoppingCart` with the identifier of [{@}]", shoppingCart.Id);
+            Logger.LogInformation("Deleting an instance of `ShoppingCart` with the identifier of [{@ShoppingCartId}]", shoppingCart.Id);
             await connection.ExecuteAsync(
                 SqlQueries.deleteForShoppingCartSql,
                 new { UserId = shoppingCart.UserId }, transaction);
 
             // add current shopping cart items
-            Logger.LogInformation("Inserting an instance of `ShoppingCartItem` with the content of [{@}]", shoppingCart.Items.ToString());
+            Logger.LogInformation("Inserting an instance of `ShoppingCartItem` with the content of [{@ShoppingCartItems}]", shoppingCart.Items);
             await connection.ExecuteAsync(
                 SqlQueries.addAllForShoppingCartSql,
                 shoppingCart.Items.Select(item => new

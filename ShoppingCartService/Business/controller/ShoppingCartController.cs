@@ -11,7 +11,7 @@ public class ShoppingCartController : ControllerBase
     private readonly IShoppingCartStore shoppingCartStore;
     private readonly IProductCatalogClient productCatalogClient;
     private readonly IEventStore eventStore;
-    private readonly ILogger logger; 
+    private readonly ILogger<ShoppingCartController> logger; 
 
     // dependency injection 
     public ShoppingCartController(IShoppingCartStore shoppingCartStore, IProductCatalogClient productCatalogClient, IEventStore eventStore, ILogger<ShoppingCartController> logger)
@@ -26,8 +26,8 @@ public class ShoppingCartController : ControllerBase
     [HttpGet("{userId:int}")]
     public async Task<ShoppingCart> Get(int userId)
     {
-        this.logger.LogInformation("Passed is user ID of {@}", userId);
-        
+        this.logger.LogInformation("Passed is user ID of {@userId}", userId);
+
         return await this.shoppingCartStore.Get(userId); 
     } 
 
@@ -35,7 +35,7 @@ public class ShoppingCartController : ControllerBase
     [HttpPost("{userId:int}/items")]
     public async Task<ShoppingCart> Post(int userId, [FromBody] int[] productIds)
     {
-        this.logger.LogInformation("Passed are Product IDs of {@}", productIds);
+        this.logger.LogInformation("Passed are Product IDs of {@productIds}", productIds);
         
         var shoppingCart = await shoppingCartStore.Get(userId);
         var shoppingCartItems = await this.productCatalogClient.GetShoppingCartItems(productIds);
@@ -50,7 +50,7 @@ public class ShoppingCartController : ControllerBase
     [HttpDelete("{userId:int}/items")]
     public async Task<ShoppingCart> Delete(int userId, [FromBody] int[] productIds)
     {
-        this.logger.LogInformation("Passed are Product IDs of {@}", productIds);
+        this.logger.LogInformation("Passed are Product IDs of {@productIds}", productIds);
         
         var shoppingCart = await this.shoppingCartStore.Get(userId); 
         
