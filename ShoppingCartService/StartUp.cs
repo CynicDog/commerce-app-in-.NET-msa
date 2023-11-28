@@ -28,7 +28,14 @@ namespace ShoppingCartService
                         3,   
                         // to wait before each retry is calculated (exponential backoff strategy)
                         attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)))
-                    ); 
+                    )
+                .AddTransientHttpErrorPolicy(p =>
+                    p.CircuitBreakerAsync(
+                        // events allowance before open state 
+                        5,
+                        // duration of open state in minute 
+                        TimeSpan.FromMinutes(1))
+                    );
         } 
  
         public void Configure(IApplicationBuilder app)
